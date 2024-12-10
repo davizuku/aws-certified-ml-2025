@@ -125,11 +125,9 @@ Additional Resources:
 ## Exploratory Data Analysis
 
 ## Modelling
-## Modelling
 
 ## ML Operations
 
 ## Exam Questions
 
-## Generative AI
 ## Generative AI
