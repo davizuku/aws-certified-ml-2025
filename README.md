@@ -54,6 +54,72 @@ Additional Resources:
         - EC2 instances need to go through an Internet GW (public access)
         - EC2 instances need to go through an VPC Endpoint GW (private access)
             - Bucket policy: `AWS:SourceVpce` or `AWS:SourceVpc`
+- AWS Kinesis
+    - Streaming service alternative to Apache Kafka
+    - Kinesis Streams (REAL TIME)
+        - Ingesting data
+        - Use cases:
+            - Streams are divided into Shards / Partitions
+            - Not for petabyte analysis
+        - Features
+            - Capacity Modes: Provisioned & On-demand
+            - Producer: write 1MB/s or 1000 messages/s PER SHARD
+            - Consumer: read 2MB/s or 5 API messages/s PER SHARD
+            - Real-time latency: 70-200 ms
+            - Data Storage for 1 to 365 days, replay capability, multi consumers
+    - Kinesis Firehose (DELIVERY / INGESTION)
+        - Moving (massive) data to S3 or Redshift
+        - Use cases:
+            - Can read from Kinesis Streams, CloudWatch or AWS IoT
+            - Can use lambda to transform data
+            - Batch writes into a Destination
+            - Destinations:
+                - AWS: S3, Redshift (via S3), ElasticSearch
+                - 3rd Party: datadog, mongodb, new relic, splunk
+                - Custom destinations via HTTP endpoint
+            - Failed data to S3 backup bucket
+        - Features:
+            - Fully managed service: near real time (buffered)
+            - Data Conversions CSV/JSON -> Parquet/ORC
+            - Pay for data going through it
+    - Kinesis Analytics
+        - Real-time ETL / ML algorithms on streams
+        - SQL on stream data
+        - Use cases:
+            - Streaming ETL: select columns, simple transformations
+            - Continuous metric generation: live leader board
+            - Responsive analytics: look for criteria and build alerting
+        - Features
+            - Pay for resources consumed (not cheap)
+            - Serverless
+            - IAM permissions for accessing sources and destinations
+            - SQL or Flink to write the computation
+            - Schema discovery
+            - Lambda for preprocessing
+            - Blue print
+            - AWS Lambda can be also a destination
+            - Managed Service for Apache Flink
+                - Bring your own Flink App (Flink Sources + Flink Sinks)
+        - ML integration
+            - RANDOM_CUT_FOREST: anomaly detection on numeric columns based on recent history
+            - HOTSPOTS: locate and return information about relatively dense regions in your data
+    - Kinesis Video Streams
+        - Sending video
+        - Producers: AWS DeepLens, RTSP camera, etc.
+            - Convention: One producer per video stream
+        - Consumers:
+            - Build your own model (TF, MXNet)
+            - AWS SageMaker
+            - Amazon Rekognition Video
+        - Features:
+            - Video Playback
+            - Retention 1 to 10 years
+        - Use cases
+            - Consume stream in real-time (Video Stream)
+            - Check point stream (with DynamoDB) in order to resume operation upon abort
+            - Send decoded frames for ML-based inference (SageMaker)
+            - Publish inference results (Data Streams)
+            - Notifications (Lambda)
 
 ## Exploratory Data Analysis
 
