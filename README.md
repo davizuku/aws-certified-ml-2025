@@ -216,6 +216,11 @@ Additional Resources:
     - Design workflows
     - Error Handling & Retry mechanisms
     - History of executions
+- AWS DataSync
+    - Migrate from on-premises to AWS
+    - DataSync agent deployed to On-premises
+- MQTT (IoT messaging protocol)
+    - A way to transfer lots sensor data to an ML model
 
 ## Exploratory Data Analysis
 
