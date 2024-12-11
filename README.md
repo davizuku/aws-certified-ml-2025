@@ -156,7 +156,17 @@ Additional Resources:
     - S3: Object storage
     - OpenSearch: ElasticSearch, indexing of data
     - ElastiCache: Caching mechanism
-
+- AWS Data Pipelines Features
+    - Destinations S3, RDS, DynamoDB, Redshift
+    - Manages task dependencies (orchestration)
+    - Runs on EC2 instances
+    - Data Pipelines vs. Glue
+        - Data Pipelines give more control on underlying infrastructure (EC2, Elastic Map Reduce (EMR), etc.)
+    - Data Pipelines is deprecated: https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/migration.html
+        - Alternatives:
+            - Glue
+            - Step Functions
+            - Managed Workflows for Apache Airflow (MWAA)
 
 ## Exploratory Data Analysis
 
