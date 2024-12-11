@@ -147,6 +147,8 @@ Additional Resources:
         - +250 ready-made transformation (filters, conversion, invalid values, etc.)
         - All actions are recorded into a "Recipe"
         - Then a job runs the "Recipe"
+    - Athena
+        - Use SQL to search over multiple S3 files, that were previously crawled by Glue.
 
 ## Exploratory Data Analysis
 
