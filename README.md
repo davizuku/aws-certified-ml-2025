@@ -120,6 +120,33 @@ Additional Resources:
             - Send decoded frames for ML-based inference (SageMaker)
             - Publish inference results (Data Streams)
             - Notifications (Lambda)
+- Glue
+    - Data Catalog
+        - Metadata repository for all schemas in your account
+        - Automated Schema Inferece
+        - Schemas versioned
+    - Crawlers
+        - Iterate data to infer schemas and partitions
+        - Stores: S3, Redshift, RDS
+        - Partition is important to be though in advance
+    - Glue ETL: Extract+Transform+Load
+        - Jobs are run on a serverless Spark platform
+            - Source -> Transforms -> Targets
+            - Role needed (overdimensioned):
+                - AmazonS3FullAccess + AWSGlueServiceRole
+        - Scheduler (cron)
+        - Trigger (events)
+        - Transformations:
+            - Bundled (DropFields, Filter, Join, Map)
+            - ML (FindMatches ML): identify duplicate or matching records
+            - Apache Spark transformations (e.g. K-Means)
+        - Conversions between CSV, JSON, Avro, Parquet, ORC, XML
+    - Glue Data Brew
+        - Clean and normalize data without writing any code
+        - Data source S3, Redshift, Aurora, Glue Data Catalog...
+        - +250 ready-made transformation (filters, conversion, invalid values, etc.)
+        - All actions are recorded into a "Recipe"
+        - Then a job runs the "Recipe"
 
 ## Exploratory Data Analysis
 
