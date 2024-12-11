@@ -12,6 +12,39 @@ Additional Resources:
 
 - Data Partitioning: pattern for speeding up range queries, e.g. date or product
 - Durability and Availability
+- Data Engineering Pipelines:
+    - Real-Time layer:
+        Producers
+            -> Kinesis Data Streams
+                -> Kinesis Data Analytics
+                    -> Lambda
+                    -> Data Streams -> EC2 <-> SageMaker
+                    -> Data Firehose
+                        -> S3 -> Redshift
+                        -> ElasticSearch
+            -> Kinesis Data Firehose
+                -> Kinesis Data Analytics
+                -> S3
+    - Video Layer
+        Video Producers
+            -> Kinesis Video Streams
+                -> Rekognition
+                    -> Data Streams -> (...)
+                -> EC2
+                    -> Data Streams -> (...)
+                    <-> SageMaker
+    - Batch Layer
+        (
+        MySQL On-premise -> DMS -> RDS -> Data Pipeline -> S3
+        DynamoDB -> Data Pipeline -> S3
+        ) -> S3 -> Glue ETL -> S3 <-> Batch for clean up
+        * Step Functions for orchestration
+        * Glue Data Catalog <- Crawlers
+    - Analytics Layer
+        S3
+            -> EMR (Hadoop / Spark / Hive...)
+            -> Redshift (Spectrum) -> QuickSight
+            -> Data Catalog -> Athena -> QuickSight
 
 ### AWS Related
 
@@ -167,6 +200,22 @@ Additional Resources:
             - Glue
             - Step Functions
             - Managed Workflows for Apache Airflow (MWAA)
+- AWS Batch
+    - Run jobs as docker images
+    - Dynamic provisioning
+    - Schedule batch jobs using CloudWatch events
+    - Orchestrate batch jobs using Step Functions
+    - Batch vs. Glue: Batch should be for non-ETL jobs.
+- AWS DMS:
+    - Database Migration Service
+    - Homogeneous & Heterogeneous migration
+    - Continuous Data Replication
+    - Needs an EC2 instance for replication
+    - DMS vs. Glue: DBM has continous replication, no transformation, only move data.
+- AWS Step Functions
+    - Design workflows
+    - Error Handling & Retry mechanisms
+    - History of executions
 
 ## Exploratory Data Analysis
 
