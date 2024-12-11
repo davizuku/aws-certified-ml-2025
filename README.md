@@ -147,8 +147,16 @@ Additional Resources:
         - +250 ready-made transformation (filters, conversion, invalid values, etc.)
         - All actions are recorded into a "Recipe"
         - Then a job runs the "Recipe"
-    - Athena
-        - Use SQL to search over multiple S3 files, that were previously crawled by Glue.
+- Athena
+    - Use SQL to search over multiple S3 files, that were previously crawled by Glue.
+- AWS Data Stores
+    - Redshift (provisioned): Data Warehousing, SQL analytics, Spectrum, OLAP (online analyitical processing)
+    - RDS + Aurora (provisioned): Relational Store, OLTP (online transaction processing)
+    - DynamoDB (serverless): NoSQL data store, provision R/W capacity, useful to store ML output.
+    - S3: Object storage
+    - OpenSearch: ElasticSearch, indexing of data
+    - ElastiCache: Caching mechanism
+
 
 ## Exploratory Data Analysis
 
