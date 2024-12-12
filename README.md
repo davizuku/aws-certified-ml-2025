@@ -224,6 +224,13 @@ Additional Resources:
 
 ## Exploratory Data Analysis
 
+- Python libraries:
+    - pandas
+    - numpy
+    - matplotlib
+    - seaborn: matplotlib on steroids, pairplot, jointplot
+    - scikit_learn
+
 ## Modelling
 
 ## ML Operations
