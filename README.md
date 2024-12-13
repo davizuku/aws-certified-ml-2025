@@ -251,6 +251,37 @@ Additional Resources:
         - Useful when seasonality is constant
     - Multiplicative model (Seasonality * Trends * Noise)
         - Useful when seasonality changes as the trend increases
+- Hadoop
+    - MapReduce
+        - Software to process massive data in parallel
+        - Map functions process data
+        - Reduce functions combine/aggregate intermediate results into the final format
+    - Spark (replaces of MapReduce)
+        - In memory caching
+        - Directive-acyclic graph for dependency resolution
+        - Java, Scala, Python and R
+        - Stream processing, ML, ...
+        - Modules:
+            - Spark Context (driver program)
+            - Cluster Managers (Spark, YARN)
+            - Executors (cache, tasks)
+        - Components:
+            - Spark streaming
+            - Spark SQL -> similar to python pandas
+            - MLLib: distributed and scalable
+                - Classification
+                - Regression
+                - Decision trees
+                - Recommendation engine
+                - Clustering (K-Means)
+                - LDA (topic modeling)
+                - ML workflow utilities
+                - SVD, PCA, statistics
+            - GraphX -> data structure, not charts.
+            - Zeppelin: Notebook for spark commands
+    - YARN: Yet Another Resource Negotiator
+    - HDFS: Hadoop Distributed File System
+
 
 ### AWS Related
 
@@ -303,6 +334,49 @@ Additional Resources:
         - Row-level & column-level security
         - Private VPC Access
         - User Management: IAM, SAML, Active Directory or email signup
+- Elastic MapReduce (EMR) & Hadoop
+    - Managed Hadoop framework on EC2 instances
+        - Spark, HBase, Presto, Flink, Hive & more
+        - EMR Notebooks
+    - Use cases
+        - Distribute the load to preprocess massive datasets
+    - Features
+        - Cluster
+            - Collection of EC2 instances -> each instance is a Node
+            - Node types:
+                - Master: m4.large if nodes < 50 else m4.xlarge
+                - Core:
+                    - m4.large
+                    - t2.medium if a lot of i/o
+                    - m4.xlarge for improved performance
+                    - <see slides>
+                 Task: spot instances
+            - Core nodes interact with HDFS
+            - Task nodes are optional and only execute tasks but do not store data
+        - Usage: Transient & Long-Running clusters
+        - AWS integration: EC2, VPC, S3, CloudWatch, IAM, CloudTrail, DataPipelines
+        - Storage
+            - HDFS, distributed, scalable file system -> Ephemeral
+            - EMRFS: use S3 as if it were HDFS
+            - Local file system
+            - EFS for HDFS
+        - EMR Notebook:
+            - Similar to Zeppelin, but additional AWS features
+            - Only available from AWS Console
+            - Backed in S3
+            - Free to use
+    - Cost model
+        - Pay per hour
+        - Provision new nodes upon failure
+        - Add and remove tasks nodes on the fly
+        - Resize core nodes in a running cluster
+    - Security
+        - IAM policies & roles
+        - Kerberos
+        - SSH
+        - Lake Formation config.
+        - Apache Ranger for Hadoop / Hive
+
 
 ## Modelling
 
