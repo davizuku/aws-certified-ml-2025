@@ -418,7 +418,22 @@ Additional Resources:
         - SSH
         - Lake Formation config.
         - Apache Ranger for Hadoop / Hive
-
+- SageMaker Ground Truth
+    - Having humans to tag data
+    - Useful for imputing missing data
+    - Big data set
+    - It learns from the tagging and only asks for clarification ambiguous cases.
+    - Human labelers
+        - Mechanical Turk
+        - Internal team
+        - Profesisonal labeling companies
+    - Pre-trained models
+        - Rekognition for image recognition
+        - Comprehend for text analysis and topic modelling
+    Ground Truth *Plus*
+        - Hire "AWS Experts" to handle the project for you.
+        - Track progress in Plus Project Portal
+        - Get labeled data from S3.
 
 ## Modelling
 
