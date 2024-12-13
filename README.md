@@ -252,6 +252,58 @@ Additional Resources:
     - Multiplicative model (Seasonality * Trends * Noise)
         - Useful when seasonality changes as the trend increases
 
+### AWS Related
+
+- Amazon Athena
+    - Features
+        - Serverless
+        - Query S3 data
+        - Formats: CSV, JSON, ORC, Parquet, etc..
+    - Use cases
+        - Ad-hoc queries of web logs
+        - Query before Redshift
+        - Integration with Jupyter, Zeppelin, RStudio
+        - Integrates with visual tools
+        - Athena & Glue:
+            - Glue Data Catalog to obtain a schema to be used by Athena
+        - NOT FOR:
+            - Highly formatted results -> QuickSight
+            - ETL -> Glue
+    - Cost model
+        - 5$ TB scanned
+        - Use columnar formats: ORC or Parquet
+        - Glue & S3 have their own charges
+    - Security
+        - IAM
+        - Encryption in S3
+        - Cross-account using bucket policies
+- Amazon QuickSight
+    - Data Analysis & Visualization tool
+    - Use cases
+        - Focuses on business users, not developers
+        - Interactive ad-hoc exploration / visualization
+        - Dashboards and KPI's
+        - ML Insights: Anomaly detection, Forcasting, Auto-narratives
+        - NOT FOR:
+            - ETL -> Glue
+    - Features
+        - Serverless
+        - Data Sources: Redshift, RDS, Athena, EC2-hosted DBs, S3, IoT, Salesforce, etc.
+        - Super-fast, Parallel, In-memory Calculation Engine (SPICE)
+        - Columnar storage
+        - Limited to 10GB per user
+        - Q: answer questions with NLP (training required: dates, topics & datasets)
+        - Paginated Reports designed to be printed
+        - Dashboards
+            - Read only when shared
+            - Visual Types: AutoGraph, Bar Chart/Histogram, Line graphs, Scatter plots, Heat Maps, Pie graphs, Tree Maps, Pivot tables, KPIs, Geo Charts, Donuts, Gauge, Word cloud.
+    - Security
+        - MFA
+        - VPC connectivity
+        - Row-level & column-level security
+        - Private VPC Access
+        - User Management: IAM, SAML, Active Directory or email signup
+
 ## Modelling
 
 ## ML Operations
