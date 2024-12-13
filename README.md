@@ -323,7 +323,12 @@ Additional Resources:
         - Make the values to be normally distributed around 0.
         - Scale features to be comparable between each other.
     - Shuffling
-
+- TF-IDF
+    - Term Frequency: how often a word occurs in a document
+    - Inverse Document Frequency: how often a word occurs in an entire set of documents
+    - TF / DF = TF * IDF
+    - Usually log(IDF)
+    - Extension: using n-grams
 
 ### AWS Related
 
