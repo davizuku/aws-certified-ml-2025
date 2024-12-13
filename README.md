@@ -224,12 +224,33 @@ Additional Resources:
 
 ## Exploratory Data Analysis
 
+### General Knowledge
+
 - Python libraries:
     - pandas
     - numpy
     - matplotlib
     - seaborn: matplotlib on steroids, pairplot, jointplot
     - scikit_learn
+- Data types
+    - Numerical
+    - Categorical
+    - Ordinal: mix of numerical & categorical. Example: star rating
+- Data distribution
+    - Probability density function (continous)
+    - Probability mass function (discrete)
+    - Normal -> continuous data
+    - Poisson -> discrete data
+    - Binomial: number of successes in a sequence of events.
+        - Bernoulli: sequence of only one event
+- Time Series Analysis
+    - Trend
+    - Seasonality (periodic occurrences)
+    - Noise
+    - Additive model (Seasonality + Trends + Noise)
+        - Useful when seasonality is constant
+    - Multiplicative model (Seasonality * Trends * Noise)
+        - Useful when seasonality changes as the trend increases
 
 ## Modelling
 
