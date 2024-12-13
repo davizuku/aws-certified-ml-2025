@@ -281,6 +281,48 @@ Additional Resources:
             - Zeppelin: Notebook for spark commands
     - YARN: Yet Another Resource Negotiator
     - HDFS: Hadoop Distributed File System
+- Feature Engineering
+    - Apply your knowledge of the data to create better features
+    - Applied ML is basically feature engineering
+    - Curse of Dimensionality: Too many features can be a problem
+    - Selecting the relevant features to reduce dimensionality
+        - Principal Component Analysis
+        - K-Means
+    - Missing data imputation
+        - Mean replacement
+            - Use median if there are outliers
+            - Does not usually work well, not accurate, naive
+            - Cannot be used on categorical features
+        - Dropping
+            - Valid approach if small number of missing values, and biased
+            - Never would be the *best* approach
+        - KNN: Find K "nearest" most similar rows and average their vaues. Bad with categorical
+        - Deep Learning: Train a ML model to impute data, hard to achieve, but works great.
+        - Regression: MICE (Multiple Imputation by Chained Equations) is state-of-art.
+        - Get more data, collecting more real data.
+    - Unbalanced data
+        - Example: fraud detection
+        - Solutions:
+            - Oversampling the minority class (random or copying)
+                - SMOTE (Synthetic Minority Over-sampling TEchnique): oversampmling using nearest neighbors
+            - Undersampling the majority class, not recommended unless "big data" scaling issues.
+            - Adjusting thresholds on probability output of the algorithm.
+    - Handling outliers
+        - An outlier is a point further than X stddev from the mean.
+        - Remove outliers only knowing the consequences in the given context.
+        - AWS Random Cut Forest algorithm to detect outlier detection
+    - Binning
+        - Transform numerical data into ordinal/categorical data by bucketing observations together based on ranges
+        - Useful to correct errors in measurements
+        - Quantile binning, categorized based on the position in the distribution
+    - Transforming
+        - Applying a function to a feature to make it better suited for training
+    - Encoding
+        - Transforming data into some new representation: OneHot encoding, Embedding
+    - Scaling / Normalization
+        - Make the values to be normally distributed around 0.
+        - Scale features to be comparable between each other.
+    - Shuffling
 
 
 ### AWS Related
