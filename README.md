@@ -408,6 +408,7 @@ Additional Resources:
             - Local file system
             - EFS for HDFS
         - EMR Notebook:
+            - Studios
             - Similar to Zeppelin, but additional AWS features
             - Only available from AWS Console
             - Backed in S3
