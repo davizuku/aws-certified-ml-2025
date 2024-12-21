@@ -443,6 +443,59 @@ Additional Resources:
 
 ## Modelling
 
+### General
+
+#### Neural Networks
+- DeepLearning: a neural network with more than one layer.
+- Types of neural network:
+    - Feedforward -> common classification or regression
+    - Convolutional (CNN) -> image classification
+    - Recurrent (RNN) -> sequences (time, words, etc.)
+- Activation functions
+    - Linear activation
+    - Binary step function
+    - Non-linear functions (backpropagation, multiple layers)
+        - Sigmoid / Logistic / TanH
+        - Rectified Linear Unit (ReLU)
+        - Leaky/Parametric ReLU (small slope for negative numbers)
+        - Other ReLU (swish, maxout)
+    - Softmax: usually last layer of a classification NN.
+    - How to choose one?
+        - Multi classification -> softmax on output layer
+        - RNN -> TanH
+        - Everything else -> ReLU > Leaky ReLU, PReLU, Maxout > Swish (deep networks)
+- Convolutional Neural Networks
+    - Find patterns in the data
+    - Use cases: images, translation, sentence classification, sentiment analysis
+    - Keras:
+        - Input Data: width * height * color channels
+        - Conv2D layer
+        - MaxPooling2D
+        - Flatten
+        - Dropout
+        - Dense
+        - Dropout
+        - Softmax
+    - Architectures: (specific arrange of layers)
+        - LeNet-5: handwriting recognition
+        - AlexNet: image classification
+        - GoogLeNet: even deeper
+        - ResNet (Residual Network): deeper
+- Recurrent Neural Networks
+    - Sequence of data: time-series, events, text, music, etc.
+    - Past behavior of the model is fed into the current prediction
+    - Older data might have lower relevance
+    - Topologies
+        - Sequence to sequence: predict stock prices
+        - Sequence to vector: words in a sentence to sentiment
+        - Vector to sequence: captions from an image
+        - Encoder -> Decoder: sequence -> vector -> sequence
+    - Training usually requires stopping the backpropagation
+    - Types of cells:
+        - LSTM: long short-term memory
+        - GRU: Gated Recurrent Unit, simplification of LSTM
+
+
 ## ML Operations
 
 ## Exam Questions
