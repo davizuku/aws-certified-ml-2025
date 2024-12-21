@@ -511,6 +511,55 @@ Additional Resources:
         - Add new trainable layers on top of the existing model
         - Retrain from scratch using the architecture
             - beware of data and money!
+#### Tuning Neural Networks (Hyperparameters)
+- Learning Rate
+    - Training is based on gradient descent on a cost function
+    - Learning Rate sets up the rythm.
+        - High LR -> overshoot correct solution
+        - Low LR -> too slow
+- Batch size
+    - How many training samples are used within each batch of each epoch
+    - Small batch sizes can skip local minimum
+    - Big batch sizes can get stuck into local minimum
+- Regularization
+    - Prevent overfitting
+    - Techniques
+        - Simpler model
+        - Dropout
+        - Early stopping
+        - L1: sum of weights -> feature selection -> Sparse output
+        - L2: sum of weights^2 -> all features considered, just weighted -> Dense output
+#### Evaluation and debugging
+- Vanishing Gradient Problem
+    - When gradient approaches zero (near the local minimum) computational problems arise with very low numbers.
+    - Fixes:
+        - Multi-level hierarchy: train levels separately
+        - Specific architectures: LSTM, ResNet
+        - Better activation function: ReLU is a good choice (because of its 45º straight line)
+    - Gradient checking is a debugging/diagnostic tool
+- Confusion Matrix
+    - Accuracy might not tell the whole story, usually with anomalies.
+    - True Positives: Actual YES, Predicted YES (✓)
+    - False Positives: Actual NO, Predicted YES (x)
+    - False Negatives: Actual YES, Predicted NO (x)
+    - True Negative: Actual NO, Predicted NO (✓)
+- Precision, Recall, F1, AUC
+    - Recall = Sensitivity = Completeness = TP / (TP + FN)
+        - Used mainly in fraud detection
+    - Precision = TP / (TP + FP)
+        - Used in drug testing, medical screening
+    - Specificity = TN / (TN + FP)
+    - F1 score = 2 * (Precision * Recall) / (Precision + Recall)
+        - Used when we care about both Precision and Recall
+    - RMSE: Root Mean Squared Errors
+    - ROC Curve: Receiver Operating Characterisctic Curve
+        - The more "bent" towards the upper-left corner, the better
+    - AUC: Area under the ROC Curve
+        - AUC of 0.5 is a useless model
+        - AUC of 1.0 is a perfect model
+    - P-R Curve: Precision/Recall curve
+        - The higher the area under the curve, the better.
+        - Good for information retrieval and large number of documents
 
 ### AWS Specific
 
