@@ -560,6 +560,17 @@ Additional Resources:
     - P-R Curve: Precision/Recall curve
         - The higher the area under the curve, the better.
         - Good for information retrieval and large number of documents
+#### Ensemble Methods
+- Take multiple models and let them vote for the final result
+- Bagging
+    - Generate N new training sets by random sampling with replacement
+    - Avoids overfitting
+    - Easier to parallelize
+- Boosting
+    - Sequentially train multiple models
+    - Some data points will repeat
+    - Output from previous models is considered for next models
+    - XGBoost
 
 ### AWS Specific
 
