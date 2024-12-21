@@ -512,6 +512,15 @@ Additional Resources:
         - Retrain from scratch using the architecture
             - beware of data and money!
 
+### AWS Specific
+
+#### Where to run and train deep models
+- EMR supports Apache MXNet and GPU
+- Appropriate EC2 types for deep learning: P3, P2, G3, G5g, P4d - A100 "UltraClusters"
+- Generative AI: Trn1, Trn1n instances (high bandwidth between nodes),
+- Inference: Inf2
+
+
 ## ML Operations
 
 ## Exam Questions
