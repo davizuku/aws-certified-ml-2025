@@ -494,7 +494,23 @@ Additional Resources:
     - Types of cells:
         - LSTM: long short-term memory
         - GRU: Gated Recurrent Unit, simplification of LSTM
-
+#### Transformers & Modern NLP
+- Transformer deep learning architecture
+    - self-attention allow processing words in parallel
+    - BERT: Bi-directional Encoder Representations from Transformers
+    - GPT: Generative Pre-trained Transformer
+- Transfer Learning
+    - Use pre-trained models
+    - Hugging Face has a set of pre-trained models
+    - Integrates iwth Sagemaker
+    - Approaches
+        - Use it as-is
+        - Fine-tune
+            - Format input data as it was when the model was trained originally
+            - Start training the model with low learning rate.
+        - Add new trainable layers on top of the existing model
+        - Retrain from scratch using the architecture
+            - beware of data and money!
 
 ## ML Operations
 
