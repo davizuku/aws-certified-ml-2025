@@ -614,7 +614,15 @@ Additional Resources:
     |Factorization Machines|<ul><li>Classification or regression with sparse data</li><li>Limited to pair-wise interaction</li><li>Factorization of a big sparse matrix</li></ul>|<ul><li>Recommender system</li></ul>|<ul><li>RecordIO-protobuf with Float32</li><li>Sparse data means CSV is not practical</li></ul>|<ul><li>Training: CPU recommended, GPU supported</li><li>Inference: CPU recommened, GPU supported</li></ul>|<ul><li>bias</li><li>factor</li><li>linear terms</li></ul>|
     |IP Insights|<ul><li>Unsupervised</li><li>Find suspicious behavior from IP addresses</li><li>Uses nerual network to learn latent vector representation.</li><li>Automatically generate negative samples</li></ul>|Security tool|<ul><li>Channels: Training (required), Validation (optional)</li><li>CSV only (entity, IP) </li><li>Entity: User name, account ID's</li></ul>|<ul><li>Training: CPU or multi-GPU (recommended) (p3) </li><li>Inference: CPU or multi-GPU (recommended): (p3) </li><li>Size of CPU depends on `vector_dim` and `num_entity_vectors`</li></ul>|<ul><li>num_entitiy_vectors: recommended twice the number of unique entity identifiers</li><li>vector_dim: too high -> overfitting</li><li>epochs</li><li>learning_rate</li><li>batch_size</li></ul>|
     |Reinforcement Learning|<ul><li>Not a regular algorithm</li><li>Learning about a virtual environment (e.g. game Pac-Man)</li><li>Online performance really fast, expensive to train</li><li>Q-Learning:<ul><li>environmental states `s`</li><li>possible actions `a`</li><li>state/action pair `Q`</li><li>Start with `Q = 0`</li><li>Explore the space, increase/decrease the `Q` values. </li><li>Look ahead: `Q(s, a) += discount * (reward(s, a) + max(Q(s')) - Q(s,a))`</li></ul></li><li>Exploration problem: heuristic vs random -> Markov Decision Process</li><li>SageMaker implementation uses Tensorflow and MXNet</li></ul>|<ul><li>Supply chain management</li><li>Industrial robotics</li><li>Autonomous vehicles</li></ul>||<ul><li>Training: multi-core and multi-instance. GPU recommended</li><li>Inference: GPU recommended</li></ul>|<ul><li>Environment: layout of the board/maze</li><li>State: player/pieces position</li><li>Action: move</li><li>Reward: value associated with the action</li><li>Observation</li></ul>|
-
+- Automatic Model Tuning
+    - Manual tuning of all the combinations of hyperparameters explodes
+    - HyperParameter Tuning Job, does not try all combinations, but smartly picks which ones make more sense.
+    - Best practices:
+        - Don't try too many hyperparams at once
+        - Limit ranges to its smallest possible
+        - Use log scales
+        - Limit parallelism
+        - Communication between parallel running instances
 
 
 #### Where to run and train deep models
