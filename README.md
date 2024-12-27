@@ -623,7 +623,108 @@ Additional Resources:
         - Use log scales
         - Limit parallelism
         - Communication between parallel running instances
-
+- Apache Spark
+    - Pre-process data in spark library
+    - Use `sagemaker-spark`
+    - Instead of using SparkML -> SageMakerEstimator + SageMakerModel
+    - Connect running SageMaker notebook to Spark cluster
+    - Best of two worlds: Preprocess in Spark + Training in SageMaker
+- SageMaker studio: visual IDE for ML
+    - Notebooks: Shareable and hardware configs
+    - Experiments: compare search ML jobs
+    - Debugger (Dashboards):
+        - Store internals of the model at periodic intervals
+        - Define rules for detecting unwanted conditions -> CloudWatch event
+        - Training/Profile reports: CPU, GPU usage, etc.
+        - Built-in rules: system bottlenecks, framework operations, model parameters
+        - Supported: Tensorflow, PyTorch, MXNet, XGBoost, GenericEstimator
+        - Debugger APIs -> SMDebug library hooks
+    - Autopilot
+        - Wrapper of AutoML: decide what model to apply and its parameters
+            - Binary classification
+            - Multiclass classification
+            - Regression
+        - Algorithms:
+            - Linear Learner
+            - XGBoost
+            - MLP
+            - Ensemble model
+        - Training mode:
+            - HPO (hyper parameter optimization): Bayesian optimization if data < 100mb else Multi-fidelity
+            - Ensembling: AutoGluon
+            - Auto: HPO if data > 100MB else ensembling
+        - Explainability:
+            - SageMaker Clarify
+            - SHAP baselines
+        - Workflow:
+            - Load data from S3 (CSV or Parquet)
+            - Select target column
+            - Automatically model creation
+            - Model notebook to debug or tweak
+            - Model leaderbord
+            - Pick & Deploy
+        - Can add human guidance
+    - Model Monitor
+        - Included in SageMaker Studio and Clarify
+        - Get alerts on quality deviations on deployed models
+        - Anomaly detection and changes in:
+            - Data drift -> differences on the quality of input data (mean, std dev)
+            - Model quality -> Accuracy, etc.
+            - Bias drift
+            - Feature attribution drift (NDCG)
+    - Deployment Safeguards
+        - Guardrails: blue/green deployments of models & rollback management
+        - Shadow Tests: compare performance of new model with a fraction of the production traffic. When ready, promote to production.
+- SageMaker Canvas: no-code ML for business analysists
+    - Local file upload to be configured by IT admin
+    - Okta SSO integration
+    - Redshift import
+    - Time series forecasting via IAM
+    - Can run in a VPC
+    - Pricing per hour + number of training cells in a model
+- SageMaker Clarify Bias Metrics
+    - Class Imbalance (CI): One facet (demographic group) has fewer trianing values than another
+    - Difference in Proportion of Labels (DPL): Imbalance of positive outcomes between facet values
+    - Kullbak-Leibler Divergence (KLD): how much outcome distributions of facets diverge
+    - LP-Norm (LP): P-norm difference between distributions of outcomes from facets
+    - Total Variation Distance (LVD): L1-norm difference between distributions of outcomes from facets
+    - Kolmogorov-Smirnov (KS): Maximum divergence between outcomes in distributions from facets. (Inverse of the others)
+    - Conditional Demographic Disparity (CDD): Disparity of outcomes between facets as a whole, and by subgroups.
+- SageMaker Training Compiler
+    - Automatically optimize training jobs
+    - Integrated into DeepLearning Containers
+    - Specific use for GPUs (p3, p4)
+    - Hugging Face library compatibility
+    - Incompatible with distributed training libraries
+    - PyTorch use XLA model save function
+    - Enable debug flag `compiler_config`
+- SageMaker Feature Store
+    - Feature == Column
+    - Some of the information might be massive, sensitive, personal, distributed...
+    - Organizes features coming from multiple sources to avoid storing them more than once.
+        - SageMaker Studio, pipeline, airflow, glue, etc.
+    - Feature Groups: record identifier, feature name, event time
+    - Both stream (online) and batch (offline) Store
+    - Security: Encryption at rest and in transit (KMS)
+    - Authorization with IAM
+- SageMaker Lineage Tracking
+    - MLOps creation, storage, running history, auditing, and compliance
+    - Cross account tracking using AWS Resource Access Manager
+    - Lineage Tracking Entities:
+        - Trial component: processing/training/transform jobs
+        - Trial: model composed of trial components
+        - Experiment: group of trials
+        - Context: group of entities
+        - Action: workflow step, model deployment
+        - Artifact: object or data
+        - Association: ContributedTo, AssociatedWith, DerivedFrom, Produced, SameAs
+    - Querying Lineage Entities: LineageQuery API in Python. (Find models using X dataset)
+- SageMaker Data Wrangler
+    - ETL Pipeline, visual interface in Studio
+    - Allows to: import, visualize, transform (300+ transformations), quick model with subset of the data.
+    - Imports data from: S3, Lake Formation, Athena, Redshift, Feature Store, JDBC
+    - Outputs notebook to: SageMaker Processing, Pipelines, Feature Store
+    - Requires m5.4xlarge instances
 
 #### Where to run and train deep models
 - EMR supports Apache MXNet and GPU
