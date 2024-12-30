@@ -733,6 +733,258 @@ Additional Resources:
 - Inference: Inf2
 
 
+### High-Level ML Services
+
+- Oriented to a more general audience.
+
+#### Amazon Comprehend
+- NLP and Text Analytics, similar to BlazingText, but in a higher level
+- Input: social media, emails, web pages, transcripts, etc.
+- Use cases:
+    - Extract key phrases, entities, sentiment, language detection, syntax, topics, and classification
+    - Events detection (going public, bankrupt, etc. )
+    - PII identification & redaction
+    - Targeted sentiment for specific entities
+    - Trainable on your own data
+
+#### Amazon Translate
+- Deep Learning for translation
+- Supports custom terminology as CSV or TMX format (proper names, brand names)
+
+#### Amazon Transcribe
+- Speech to text
+- Features:
+    - Supports streaming
+    - Only: French, English, Spanish
+    - Speaker identification given number of speakers
+    - Channel Identification
+    - Automatic Language detection
+    - Custom Vocabularies (Lists, Tables (SoundsLike, DisplayAs, etc.))
+- Use cases:
+    - Call Analytics: customer service calls
+        - Real-time transcriptions & insights
+        - Sentiment, talk speed, interruptions, look for specific phrases
+    - Medical
+        - Trained on medical terminology
+        - HIPAA-eligible
+    - Subtitling
+
+#### Amazon Polly
+- Text to speech
+- Features
+    - Lexicons to customize word pronunciation
+    - SSML (Speech Synthesis Markup Language) is a standard to control emphasis, pronunciation, breathing, whispering, etc.
+    - https://docs.aws.amazon.com/polly/latest/dg/supportedtags.html
+    - Speech Marks: useful for lip-synching animation
+
+#### Amazon Rekognition
+- Computer vision of object and scene detection
+- Use cases:
+    - Image moderation
+    - Facial analysis
+    - Celebrity recognition
+    - Face comparison
+    - Text in image
+    - Video analysis: object marked on time, people pathing
+    - Custom labels: specify labels for unique items
+- Input:
+    - Images from S3
+    - Video must come from Kinesis Video Streams (H.264 encoded, 5-30 FPS)
+        - Favor resolution over framerate
+    - Lambda to recognize images upon upload
+
+#### Amazon Forecast
+- Time-series accurate frecast
+- Features:
+    - AutoML chooses the best model among: ARIMA, DeepAR, ETS, NPTS, Prophet
+    - Algorithms:
+        - CNN-QR:
+            - Convolutional Neural Network - Quantile Regression
+            - Computational expensive
+            - Best for large datasets with hundreds of time series
+            - Accept related historical time series (which won't be forecasted)
+        - DeepAR+
+            - Recurrent Neural Network
+            - Computational expensive
+            - Best for large datasets with hundreds of time series
+            - Accepts related forward-looking time series & metadata
+        - Prophet
+            - Additive model with non-linear trends and seasonality
+        - NPTS
+            - Non-parametric time series
+            - Good for sparse data. Variants for seasonal / climate forecasts
+        - ARIMA
+            - Autoregressive Integrated Moving Average
+            - Simple datasets (<100 time series)
+        - ETS
+            - Exponential Smoothing
+            - Simple datasets (<100 time series)
+    - Any time series
+    - Entities: Dataset groups, predictors, forecasts
+- Use cases:
+    - Inventory planning
+    - Financial planning
+    - Resource planning
+
+#### Amazon Lex
+- Natural-Language Chatbot engine
+- A bot is build around Intents
+    - Utterances invoke intents
+    - Lambda functions are invoked to fullfill the intent
+    - Slots specify extra information needed by the intent
+- Features:
+    - Integrable into AWS Mobile SDK, Facebook Messenger, Slack, Twilio, etc.
+    - Lex Automated Chatbot:
+        - Given transcripts of past conversations
+        - Lex builds a bot design: extract intents, slots, etc.
+        - Integrates with Amazon Connect transcripts
+
+#### Amazon Personalize
+- Fully-managed recommender engine
+- Workflow:
+    - Feed in data (purchases, impressions, ratings, etc.) <- S3 or API calls
+    - Schema in Avro format
+- How to use it:
+    - Mainly via API
+    - Javascript or SDK integration
+    - Main API calls:
+        - GetRecommendations
+            - Recommended products
+            - Similar items
+        - GetPersonalizedRanking
+            - Ranks a list of items
+            - Allows editorial control
+    - Console or CLI
+- Features
+    - Real-time or batch recommendations
+    - Recommendations for new users (cold start problem)
+    - Contextual recommendations based on location, time, device type, etc.
+    - Similar items ("people who bought X also bought Y")
+    - Unstructured text input
+    - Intelligent user segmentation for marketing campaigns
+    - Business rules and filters (already bought, out-of-stock, etc.)
+    - Promotions (pay to appear up in the list)
+    - Trending Now
+    - Personalized Rankings (search results, promotions, curated list)
+- Terminology
+    - Datasets: users, items, interactions
+    - Recipes: (what type of model)
+        - USER_PERSONALIZATION (give me recommendations for this user)
+        - PERSONALIZED_RANKING (rank this list of items for this user)
+        - RELATED_ITEMS (similar items to that items)
+    - Solutions: (model)
+        - Trains the model
+        - Optimize for relevance and other additional objectives (price, video length, etc.)
+        - Hyperparameter Optimization (HPO)
+    - Campaigns
+        - Deployment of a solution version
+        - Deploys the capacity for generating real-time recommendations
+- Hyperparameters
+    - User-Personalization, Pesonalized-Ranking
+        - `hidden_dimension` (HPO)
+        - `bptt` (back-propagation through time -> RNN): give old events less weight
+        - `recency_mask` (weights recent events)
+        - `min/max_user_history_length_percentile` (filter out robots/crawlers, big enterprises)
+        - `exploration_weight` [0, 1] higher -> less relevance
+        - `exploration_time_age_cut_off`: how far back in time to take into account events.
+    - Similar items
+        - `item_id_hidden_dimension` (HPO)
+        - `item_metadata_hidden_dimension` (HPO with max and min)
+Best practices
+- Keep datasets current with incremental data imports (real-time API > PutEvents)
+- Retrain the model (aka new solution version)
+    - Every 2h by default
+    - Recommended to retrain weekly (`trainingMode=FULL`)
+Security
+- Data not shared cross-accounts
+- Data encrypted with KMS or SSE-S3
+- Data in transit between internal systems also encrypted
+- Access control via IAM
+- Data in S3 must have appropriate bucket policy to allow Amazon Personalize
+- Monitoring & logging in CloudWatch & CloudTrail
+Pricing
+- Data ingestion: per-GB
+- Training: per training-hour
+- Inference: per TPS-hour (transactions per second)
+- Batch recommendations: per user or per item
+
+#### Amazon Textract
+- OCR with forms, fields, tables support
+- Structured data
+
+#### AWS DeepRacer
+- Reinforcement learning powered 1/18-scale race car
+
+#### Amazon Lookout
+- Industrial: Equipment, metrics, and vision
+- Detect abnormalities in data
+- Data from S3, RDS, Redshift, 3rd party SaaS
+
+#### Amazon Monitron
+- End-to-end system for monitoring industrial equipment and predictive maintenance
+- Specific sensor connected to AWS (temperature, vibration, etc.)
+
+#### TorchServe
+- Model serving framework for PyTorch
+- Part of the PyTorch open source project from Facebook
+
+#### AWS Neuron
+- SDK for optimizing ML models for inference on AWS Inferentia chips
+- EC2 Inf1 instance type
+- Integrated with SageMaker
+
+#### AWS Panorama
+- Computer Vision at the edge
+    - Similar to DeepLens
+- Bring CV to existing IP cameras (or get ones from AWS)
+- Output to S3 or CloudWatch
+
+#### AWS DeepComposer
+- AI-powered keyboard
+- Composes a melody into an entire song
+- Educational purposes
+
+#### Amazon Fraud Detector
+- Upload historical frad detection data
+- Build custom models from a template
+- Exposes an API
+- Use cases
+    - New accounts
+    - Guest account
+    - "Try before you buy" abuse
+    - Online payments
+
+#### Amazon CodeGuru
+- Automated Code Reviews
+- Performance, resource leaks, race conditions, security vulnerabilities
+- Offer specific recommendations
+- Supports: java and python
+
+
+#### Contact Lens for Amazon Connect
+- Supports call centers
+- Ingests audio data -> transcribe
+- Allows searching for:
+    - Sentiment analysis
+    - "Utterances" that correlate with successful calls
+    - Categorize calls
+    - Metrics on talk speeds and interruptions
+    - Theme detection: discover emerging issues
+
+#### Amazon Kendra
+- Enterprise search with natural language
+    - "Alexa's sister" used for private knowledge bases
+- Internal Tech support
+- Combines data from file systems: SharePoint, intranet, sharing services into a searchable repository
+- Tuning on user feedback 👍/👎, views, etc.
+
+#### Amazon Augmented AI (A2I)
+- Human review of ML predictions
+- Build workflows for low-confidence predictions
+- Access Mechanical Turk workforce or vendors
+- Integrated into SageMaker, Amazon Textract and Rekognition
+- Very similar to Ground Truth
+
 ## ML Operations
 
 ## Exam Questions
