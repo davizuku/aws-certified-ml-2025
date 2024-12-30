@@ -987,6 +987,142 @@ Pricing
 
 ## ML Operations
 
+### SageMaker and Docker Containers
+- All models are hosted in Docker containers: Pre-built, scikit-learn, Spark, Tensorflow, MXNet, ...
+    - Distribute Tensorflow using Horovod or Parameter Servers
+- SageMaker take advantage of having to care only about dockers, not their internals.
+- Docker: Images, Dockerfile, ECR
+    - Directory structure:
+        - Training container:
+        ```
+        /opt/ml
+            - input
+                - config
+                    - hyperparameters.json
+                    - resourceConfig.json
+                - data
+                    - <channel_name>
+                        - <input data>
+            - model
+                - <model files>
+            - code
+                - <script files: training>
+            - output
+                - failure
+        ```
+        - Deployment container:
+        ```
+        /opt/ml
+        - model
+            - <model files>
+        ```
+        - General docker image (train + inference)
+        ```
+        WORKDIR
+        - nginx.conf
+        - predictor.py -> flask web server
+        - serve/ -> g-unicorn server to run multiple flask apps
+        - train/ -> contains the program to run when running a training
+        - wsgi.py -> wrapper to invoke the flask app for serving results
+        ```
+    - Environment variables
+        - `SAGEMAKER_PROGRAM`: (mandatory) run a script inside `/opt/ml/code`
+        - `SAGEMAKER_TRAINING_MODULE`: Names of the modules to be used, e.g. tensorflow, mxnet, etc.
+        - `SAGEMAKER_SERVICE_MODULE`: Names of the modules to be used, e.g. tensorflow, mxnet, etc.
+        - `SM_MODEL_DIR`: Model checkpoints directory
+        - `SM_CHANNELS` / `SM_CHANNEL_*`: train, test, validation
+        - `SM_HPS`/ `SM_HP_*`: hyper parameters
+        - `SM_USER_ARGS`
+    - Once a docker is configured and built, it can be used as:
+    ```python
+    from sagemaker.estimator import Estimator
+    estimator = Estimator(image_name='<docker_name>',
+                    role='SageMakerRole',
+                    train_instance_count=1,
+                    train_instance_type='local')
+    estimator.fit()
+    ```
+- Production Variants: different versions of a model.
+    - A/B tests with production traffic
+
+### SageMaker Neo
+- Train once, run anywhere -> Edge devices (ARM, Intel, Nvidia processors)
+- Consists of a **compiler** and a **runtime**
+    - Compile and runtime must use the same instance type
+- Integrated AWS IoT Greengrass
+    - Actual deployment to edge devices
+    - Inference using Lambda functions
+
+### SageMaker Security
+- IAM to set up users and permissions
+    - MFA
+    - User permissions
+    - Predefined policies:
+        - AmazonSakeMakerReadOnly
+        - AmazonSakeMakerFullAccess
+        - AdministratorAccess
+        - DataScientist
+- Logging and monitoring:
+    - CloudTrial to log API and user activity, S3 access
+    - CloudWatch: invocations and latency, ground truth
+- Encryption
+    - At rest: KMS or SSE-S3
+    - In transit: TLS/SSL and access control with IAM & roles
+    - Inter-container traffic encryption
+- Be aware of PII
+- Training inside a VPC
+    - Set up S3 VPC endpoints
+    - Custom endpoints policies
+    - Notebooks are Internet-enabled by default, if disabled VPC configuration needs to be set up:
+        - PrivateLink
+        - NAT Gateway
+    - Training and Inference Containers are also Internet-enabled by default
+
+### SageMaker Resource Management
+- Instance type selection:
+    - Training on GPU -> P3 or G4dn
+    - Training on CPU -> M5
+    - Inference less demanding -> C5
+    - Managed Spot Training (90% cheaper than on-demand)
+        - Store checkpoints in S3
+        - Longer training time due to interruptions
+- Automatic Scaling
+    - Scaling policy, target metrics, min/max capacity
+    - CloudWatch-driven
+- Availability Zones
+    - Automatically across AZ for multiple instances
+    - VPC with two subnets
+    - For High-Availability: deploy multiple instances per endpoint
+
+### SageMaker Serverless Inference
+- Specify container, requirements and let AWS handle it.
+- Useful for unpredictable traffic.
+- Charged based on usage
+- Monitor via CloudWatch: ModelSetupTime, Invocations, MemoryUtilization
+- AWS Recommender:
+    - Guidelines on best instance type and configuration for a given model
+    - Benchmarks the model and recommends the best set given some criteria
+    - Instance (auto - 45min) and Endpoint (custom - 2h) recommendations
+
+### SageMaker Inference Pipelines
+- Linear sequence of 2-15 containers
+- Combine pre-processing, predictions, post-processing
+- Support for SparkML and scikit-learn containers
+- Real-time inference and batch transforms
+
+### MLOps with SageMaker
+- Kubernetes
+    - Amazon SageMaker Operators for Kubernetes
+    - Components for Kubeflow Pipelines (orchestration)
+        - Processing: Spark container in SageMaker processing
+        - Hyperparameter Tuning: HPO jobs
+        - Training: Training job
+        - Inference: SageMaker hosting
+    - Hybrid ML workflows (on-prem + cloud)
+- SageMaker directly
+    - SageMaker Projects in Studio
+    - Uses SageMaker Pipelines to define the steps for CI/CD
+
 ## Exam Questions
 
 ## Generative AI
