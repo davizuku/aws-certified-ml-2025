@@ -296,8 +296,8 @@ Additional Resources:
         - Dropping
             - Valid approach if small number of missing values, and biased
             - Never would be the *best* approach
-        - KNN: Find K "nearest" most similar rows and average their vaues. Bad with categorical
-        - Deep Learning: Train a ML model to impute data, hard to achieve, but works great.
+        - KNN: Find K "nearest" most similar rows and average their vaues. Bad with categorical, great with numeric data.
+        - Deep Learning: Train a ML model to impute data, hard to achieve, but works great for categorical.
         - Regression: MICE (Multiple Imputation by Chained Equations) is state-of-art.
         - Get more data, collecting more real data.
     - Unbalanced data
