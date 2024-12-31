@@ -1123,6 +1123,4 @@ Pricing
     - SageMaker Projects in Studio
     - Uses SageMaker Pipelines to define the steps for CI/CD
 
-## Exam Questions
-
 ## Generative AI
