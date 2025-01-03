@@ -1212,3 +1212,25 @@ Pricing
     - Next steps:
         - https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-fine-tune.html
         - https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_applying_machine_learning/mixtral_tune_and_deploy/mixtral-8x7b.html
+### Amazon Bedrock
+- An API for generative AI Foundation models
+- Features:
+    - Integrates with SageMaker Canvas
+    - Support for RAG
+    - Serverless
+    - Use foundation models or _bring your own model_
+    - API endpoints:
+        - bedrock: manage, deploy, train models
+        - bedrock-runtime: inference (Converse / Invoke + Stream/Not stream)
+        - bedrock-agent: manage, deploy, train LLM agents, and knowledge bases
+            - LLM Agent that has tools that can use.
+        - bedrock-agent-runtime: inference (InvokeAgent, Retrieve, & RetrieveAndGenerate)
+    - Playground: chat, text, images
+- IAM to manage permissions
+    - Not root users
+    - Permissions: AmazonBedrockFullAccess, AmazonBedrockReadOnly
+- Model Access
+    - Request access before accessing a model.
+    - Agree price based on 3rd-party pricing, check pricing: aws.amazon.com/bedrock/pricing
+        - Not clear when requesting model access.
+    - Amazon (Titan) are approved automatically.
