@@ -1263,3 +1263,12 @@ Pricing
     - Provides references to the original transcript
     - Skips small talk
     - Patients recordings and notes are not stored in the cloud.
+
+## Preparation resources
+- Practice exams:
+    - AWS Certified Machine Learning - Specialty Official Practice Question Set (MLS-C01)
+- SageMaker Developer Guide:
+- Amazon's Exam Guide: https://aws.amazon.com/certification/certified-machine-learning-specialty
+    - 10 sample questions
+- Machine Learning Path: Exam Preparation: https://aws.amazon.com/training/learning-paths/machine-learning/exam-preparation
+- Take Data Engineering course.
