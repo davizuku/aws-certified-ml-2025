@@ -1234,3 +1234,22 @@ Pricing
     - Agree price based on 3rd-party pricing, check pricing: https://aws.amazon.com/bedrock/pricing
         - Not clear when requesting model access.
     - Amazon (Titan) are approved automatically.
+### Amazon Q Developer (aka Code Whisperer)
+- Dev Copilot: Java, Javascript, Typescript, Python, C#
+- Features:
+    - Security scans: Java, Javascript, Python
+    - Reference tracker
+    - Bias avoidance
+    - AWS service integration: EC2, Lambda, S3
+    - Security: Encrypted in transit and in rest. In individual plan, Amazon is allowed to mine personal code.
+    - IDEs: Visual Studio, JetBrains, JupyterLab, SageMaker Studio, AWS Lambda console, AWS Cloud9
+- Pricing:
+    - Individual:
+        - Free to use
+        - 50 security scans
+    - Professional:
+        - Policy and access management
+        - Authenticated with IAM center
+        - Customization: set code references
+        - Up to 500/user/month security scans
+        - $19 / user / month
