@@ -1186,3 +1186,29 @@ Pricing
     - Add a layer on top of the pre-trained model
 ### Labs
 - Transformers: https://drive.google.com/file/d/1uvyQbUpUbFcmI43A-Z7EQgXZjXLQyfTe/view?usp=sharing
+
+### Foundation Models
+- AWS offers a set of big models.
+    - Jurassic-2 (AI21labs): multilingual text generation
+    - Claude (Anthropic): chats, question answering, workflow automation
+    - Stable Diffusion (stability.ai): Image, art, logo, design generation
+    - Amazon Titan: text summarization, generation, Q&A, embeddings, ...
+- Use it with Amazon SageMaker Jumpstart
+    - Huggingface models: Falcon, Flan, GPT-J
+- Fine-tune foundation models
+    - Using a `template.json` and a set of `jsonl` files in S3:
+        - Default template:
+        ```json
+            {
+                "prompt": "Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.\n\n### Instruction:\n{instruction}\n\n### Input:\n{context}",
+                "completion": "{response}",
+            }
+        ```
+    - Then, each line in the `jsonl` files would need to contain: ```jsonl
+            {"instruction": ..., "context": ..., "response": ...},
+            {"instruction": ..., "context": ..., "response": ...},
+        ...
+        ```
+    - Next steps:
+        - https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-fine-tune.html
+        - https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_applying_machine_learning/mixtral_tune_and_deploy/mixtral-8x7b.html
