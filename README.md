@@ -1231,6 +1231,6 @@ Pricing
     - Permissions: AmazonBedrockFullAccess, AmazonBedrockReadOnly
 - Model Access
     - Request access before accessing a model.
-    - Agree price based on 3rd-party pricing, check pricing: aws.amazon.com/bedrock/pricing
+    - Agree price based on 3rd-party pricing, check pricing: https://aws.amazon.com/bedrock/pricing
         - Not clear when requesting model access.
     - Amazon (Titan) are approved automatically.
