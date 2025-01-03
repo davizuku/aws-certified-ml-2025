@@ -1184,3 +1184,5 @@ Pricing
 - Options:
     - Freeze specific layers, re-train the others
     - Add a layer on top of the pre-trained model
+### Labs
+- Transformers: https://drive.google.com/file/d/1uvyQbUpUbFcmI43A-Z7EQgXZjXLQyfTe/view?usp=sharing
