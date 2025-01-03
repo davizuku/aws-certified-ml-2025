@@ -1124,3 +1124,63 @@ Pricing
     - Uses SageMaker Pipelines to define the steps for CI/CD
 
 ## Generative AI
+
+### Transformer Achitecture
+- "Attention is all you need" (2017)
+    - Focused on NLP
+    - Attention refers to the change of paradigm in Encoder-Decoder architectures related to sequence-to-sequence models (RNNs)
+    - In typical Seq2Seq models, there is a _Last Hidden State_ at the end of the _encoder_, which is used to feed the _encoder_.
+    - The change implies not using one single _Hidden State_, but to use one state for each member of the sequence.
+    - In addition, instead of using RNNs, which still process all elements in sequential order, use Feed-Forward Neural Networks (FFNNs) encoding the _positional order_ and the _attention weights_. This way, each FFNN is independent, so the whole sequence can be parallelized and much more data can be used to train the model -> Large Language Models.
+    - In language translation this allows to consider **word order** and **word relationships**, using _attention weights_.
+- Self-attention
+    - Learn relationships beween words and encode it into an embedding reflecting its true meaning. In this example both sentences use the _novel_ word, but with different meanings:
+        - I read a good _novel_ -> _book_
+        - Attention is a _novel_ idea -> _original_
+    - Internal architecture:
+        - Three matrices of weights learned through back-propagation: Query (`Wq`):, Key (`Wk`):, Value (`Wv`):
+        - Token vectors = [
+            `token_embedding * Wq, (Vq)`,
+            `token_embedding * Wk, (Vk)`,
+            `token_embedding * Wv, (Vv)`,
+        ]
+        - For each token, `Vscore = softmax([Vq · Vk0, Vq · Vk1, ..., Vq · Vn ])`
+        - Masked Self-Attention to prevent looking for future words in a sentence, as humans do while reading.
+        - For each token, `Vproduct = Vscore * Vv`
+        - Then, for each token, `Vz = sum(Vproduct_i for 0 <= i < n)`
+        - `Vz` of a token represents its _true meaning_
+        - `Vz` now replaces the token embeddings into the FFNN capturing the context for each word in the sentence.
+        - This whole process is optimized using _Multi-headed self-attention_ converting vectors into n-headed row matrices for parallel computing.
+### Applications of transformers
+    - Chat (on top of moderation)
+    - Question answering
+    - Text classification
+    - Named entity recognition
+    - Summarization
+    - Translation
+    - Code generation
+    - Text generation
+### From Transformers to GPT
+- Generative Pre-Trained Transformer (GPT-2)
+- Decoder-only block (as in encoder-decoder architecture)
+- Encoders not needed due to parallelism
+- (BERT uses only encoders)
+- Only predicting the next word
+- Architecture of the GPT-2 model:
+    - Input string: `string`
+    - Tokenization -> Tokens: `string[]`
+    - Tokens -> embedding: `embedding[]`
+    - Positional encoding: interleaved sinusoidal function
+    - Stacked list of Decoder Blocks, each consisting of (see previous sections):
+        - Masked Self-attention
+        - Feed-Forward Neural Network
+    - Output Token Embedding, multiply by a Token Embedding matrix getting a list of probabilities.
+    - Token Probabilities
+        - Temperature is the amount of randomness
+        - Temperature = 0 -> use the most probable.
+    - Token to string: `string`
+### Transfer Learning (Fine Tuning)
+- Add additional data to an existing LLM.
+- Options:
+    - Freeze specific layers, re-train the others
+    - Add a layer on top of the pre-trained model
