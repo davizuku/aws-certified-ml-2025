@@ -1253,3 +1253,13 @@ Pricing
         - Customization: set code references
         - Up to 500/user/month security scans
         - $19 / user / month
+### AWS HealthScript
+- Transcribing recordings of medical consultations
+- Features
+    - Speaker roles identified
+    - Preliminary notes
+    - HIPAA-Compliant
+    - Trained on medical terms
+    - Provides references to the original transcript
+    - Skips small talk
+    - Patients recordings and notes are not stored in the cloud.
