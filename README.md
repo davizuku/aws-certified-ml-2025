@@ -794,7 +794,7 @@ Additional Resources:
     - Lambda to recognize images upon upload
 
 #### Amazon Forecast
-- Time-series accurate frecast
+- Time-series accurate forecast
 - Features:
     - AutoML chooses the best model among: ARIMA, DeepAR, ETS, NPTS, Prophet
     - Algorithms:
