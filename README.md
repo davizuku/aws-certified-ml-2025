@@ -89,7 +89,7 @@ Additional Resources:
             - Bucket policy: `AWS:SourceVpce` or `AWS:SourceVpc`
 - AWS Kinesis
     - Streaming service alternative to Apache Kafka
-    - Kinesis Streams (REAL TIME)
+    - Kinesis Data Streams (REAL TIME)
         - Ingesting data
         - Use cases:
             - Streams are divided into Shards / Partitions
