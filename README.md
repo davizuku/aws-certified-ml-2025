@@ -95,25 +95,35 @@ Additional Resources:
             - Streams are divided into Shards / Partitions
             - Not for petabyte analysis
         - Features
-            - Capacity Modes: Provisioned & On-demand
+            - Capacity Modes:
+                - Provisioned
+                    - Based on number of shards
+                    - IN 1MB/s per shard
+                    - OUT 2MB/s per shard
+                - On-demand
+                    - Default 4MB/s or 4000 records
             - Producer: write 1MB/s or 1000 messages/s PER SHARD
             - Consumer: read 2MB/s or 5 API messages/s PER SHARD
             - Real-time latency: 70-200 ms
             - Data Storage for 1 to 365 days, replay capability, multi consumers
-    - Kinesis Firehose (DELIVERY / INGESTION)
+            - Cannot be deleted, just wait for expiration
+            - KPL: Kinesis Producer Library
+            - KCL: Kinesis Consumer LIbrary
+    - ~Kinesis~ Amazon Data Firehose (DELIVERY / INGESTION)
         - Moving (massive) data to S3 or Redshift
         - Use cases:
             - Can read from Kinesis Streams, CloudWatch or AWS IoT
             - Can use lambda to transform data
             - Batch writes into a Destination
             - Destinations:
-                - AWS: S3, Redshift (via S3), ElasticSearch
+                - AWS: S3, Redshift (via S3), OpenSearch (ElasticSearch)
                 - 3rd Party: datadog, mongodb, new relic, splunk
                 - Custom destinations via HTTP endpoint
             - Failed data to S3 backup bucket
         - Features:
-            - Fully managed service: near real time (buffered)
-            - Data Conversions CSV/JSON -> Parquet/ORC
+            - Serverless
+            - Fully managed service: *near real-time* (buffered)
+            - Data Conversions CSV/JSON/Parquet/Avro/Raw text/Binary data -> Parquet/ORC
             - Pay for data going through it
     - Kinesis Analytics
         - Real-time ETL / ML algorithms on streams
