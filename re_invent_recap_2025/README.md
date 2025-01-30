@@ -1,0 +1,65 @@
+# re:Invent (Jan 2025)
+
+- Amazon Nova -> new foundation models
+    - Understanding: Micro, Lite, Pro, Premier
+        - Customizable, through model destillation & fine-tunning
+    - Creative: Canvas, Reel
+- Amazon Guardrails
+    - Controlling allucination -> automated reasoning
+        - Automated Reasoning Policies are created from documents
+        - Debugging rules
+        - Multimodal toxicity detection (images only for now)
+- Amazon Bedrock
+    - Prompt routing and caching can save up to 30% on models by redirecting prompts to the optimal model
+    - Prompt optimization: rewrite prompts with the help of LLMs
+    - Multi-agent collaboration
+        - Why multi-agent needed?
+            - Each agent has a different knowledge base
+            - It is good to fragment specialties
+            - It is close to how you would do it with people
+- Amazon SageMaker (new generation)
+    - SageMaker -> SageMaker AI
+    - SageMaker unified studio
+        - Data Processing
+        - SQL Analytics
+        - Model Development
+        - Gen AI App development
+        - Streaming (coming soon)
+        - Search (coming soon)
+        - Business intelligence
+    - Team
+        - Create a project
+        - Git integration for a project
+        - Data Engineer
+            - Uploaded data into a project will be available to all people in the team
+            - Data catalog
+            - Amazon Q integrated into the ETL flow
+        - Spark expert
+            - Same URL
+            - Use Athena or Redshift for querying the data
+            - Jupyter Labs includes Q for helps
+            - Publish data to the catalog to make it available for the rest of the team
+        - Gen AI app developer
+            - Foundation models (from Bedrock)
+            - Compare models and choose the best one
+    - SageMaker Lakehouse
+        - Unified data management, access and flexibility of the storage
+            - Single copy of data
+        - Open to choose ML engine, compatible with Apache Iceberg API
+        - Security:
+            - Set permissions into a single place
+        - Ingestion in near-real-time with zero-etl
+        - Pricing: not additional cost, pay for the services you use under the hood.
+        - Query federation: query without transforming data
+    - SageMaker Hyperpod
+        - Features
+            - Resilient environment
+                - Tracks the training and saves checkpoints
+                - In case of a failure it will continue from the checkpoint
+            - Streamline distributed training
+            - Customizable UX and persistent cluster
+        - Use cases
+            - Train large foundation models
+            - Training and fine-tuning foundation models
+        - Difference with regular training
+            - Regular training does not have checkpoints -> restars the whole training
